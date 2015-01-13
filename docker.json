@@ -1,0 +1,19 @@
+{
+  "apps": [{
+    "name"            : "crontab",
+    "script"          : "scripts/crontab.js",
+    "out_file"        : "logs/crontab.out",
+    "error_file"      : "logs/crontab.err",
+    "log_date_format" : "YYYY-MM-DD HH:mm:ss",
+    "watch"           : false,
+    "max_restarts"    : 0
+  }, {
+    "name"            : "server",
+    "script"          : "scripts/server.js",
+    "out_file"        : "logs/server.out",
+    "error_file"      : "logs/server.err",
+    "log_date_format" : "YYYY-MM-DD HH:mm:ss",
+    "watch"           : false,
+    "max_restarts"    : 0
+  }]
+}
