@@ -1,3 +1,5 @@
-logs
+.git
+.gitignore
 demo-output
+logs
 node_modules

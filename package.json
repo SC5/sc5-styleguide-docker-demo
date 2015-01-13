@@ -11,6 +11,33 @@
     "url": "https://github.com/SC5/sc5-styleguide-docker-demo/issues"
   },
   "dependencies": {
+    "gulp": "^3.8.10",
+    "gulp-sass": "^1.2.4",
     "node-schedule": "^0.1.15"
+  },
+  "apps": [
+    {
+      "name": "crontab",
+      "script": "scripts/crontab.js",
+      "out_file": "logs/crontab.out",
+      "error_file": "logs/crontab.err",
+      "log_date_format": "YYYY-MM-DD HH:mm:ss",
+      "watch": false,
+      "max_restarts": 0
+    },
+    {
+      "name": "server",
+      "exec_interpreter": "bash",
+      "script": "scripts/server.sh",
+      "out_file": "logs/server.out",
+      "error_file": "logs/server.err",
+      "log_date_format": "YYYY-MM-DD HH:mm:ss",
+      "watch": false,
+      "max_restarts": 0
+    }
+  ],
+  "scripts": {
+    "server": "gulp watch",
+    "start": "pm2 startOrRestart package.json && pm2 logs"
   }
 }
