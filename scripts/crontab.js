@@ -1,44 +1,42 @@
 'use strict';
 
 var EVERY_30_MINUTES = '0,30 * * * *',
-    AT_MIDNIGHT      = '0 0 * * *',
-    schedule = require('node-schedule'),
-    proc = require('./util/process-util'),
-    watcher = require('./util/watcher');
+  schedule = require('node-schedule'),
+  childProcess = require('child_process'),
+  spawn = childProcess.spawn;
 
-watcher.exitOnChange([__filename], 'docker/scripts/util/**/*');
-scheduleJob('git-pull', AT_MIDNIGHT, pull);
-scheduleJob('git-reset', EVERY_30_MINUTES, reset);
+scheduleJob();
 
-function pull() {
-  return proc.spawn('git', ['pull', '--force']);
+function scheduleJob() {
+  var job = new schedule.Job('git-reset', reset);
+  job.on('run', function() {
+    setTimeout(function() {
+      console.log('finished');
+      console.log('next invocation will be on', job.nextInvocation().toString());
+    }, 100);
+  });
+  job.schedule(EVERY_30_MINUTES);
+  console.log('scheduled to run every 30 minutes:', EVERY_30_MINUTES);
+  console.log('next invocation will be on', job.nextInvocation().toString());
 }
 
 function reset() {
-  return proc.spawn('git', ['reset', '--hard', 'HEAD']);
-}
+  var cmd = 'git',
+    args = ['reset', '--hard', 'HEAD'],
+    opts = {
+      cwd: process.cwd,
+      env: process.env,
+      stdio: 'inherit'
+    };
 
-function scheduleJob(name, cronPattern, fn) {
-  var job = new schedule.Job(name, wrap(fn));
-  job.on('run', function() {
-    setTimeout(function() {
-      console.log(name, 'finished');
-      console.log(name, 'next invocation will be on', job.nextInvocation().toString());
-    }, 100);
+  console.log('running: "' + ([cmd].concat(args).join(' ')) + '"');
+  spawn(cmd, args, opts).on('error', function(err) {
+    console.error(cmd, 'failed:', err);
+    process.exit(1);
+  }).on('exit', function(code) {
+    if (code !== 0) {
+      console.error(cmd, 'exited with code', code);
+      process.exit(code);
+    }
   });
-  job.schedule(cronPattern);
-  console.log(name, 'scheduled to run at', cronPattern);
-  console.log(name, 'next invocation will be on', job.nextInvocation().toString());
-  return job;
-}
-
-function wrap(fn) {
-  return function() {
-    fn().done(undefined, function(err) {
-      if (err) {
-        console.error('terminated with code or signal', err);
-      }
-      process.exit(666);
-    });
-  };
 }
