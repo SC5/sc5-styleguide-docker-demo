@@ -8,7 +8,7 @@ var EVERY_30_MINUTES = '0,30 * * * *',
 scheduleJob();
 
 function scheduleJob() {
-  var job = new schedule.Job('git-reset', reset);
+  var job = new schedule.Job('copy-files', copyFiles);
   job.on('run', function() {
     setTimeout(function() {
       console.log('finished');
@@ -20,9 +20,9 @@ function scheduleJob() {
   console.log('next invocation will be on', job.nextInvocation().toString());
 }
 
-function reset() {
-  var cmd = 'git',
-    args = ['reset', '--hard', 'HEAD'],
+function copyFiles() {
+  var cmd = 'scripts/copy-files.js',
+    args = [],
     opts = {
       cwd: process.cwd,
       env: process.env,

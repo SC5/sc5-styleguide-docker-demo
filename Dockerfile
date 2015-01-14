@@ -13,7 +13,7 @@ WORKDIR $SG_APP_DIR
 RUN mkdir logs
 RUN npm install -g pm2
 RUN npm install
-RUN npm install sc5-styleguide@0.3.0-rc2
+RUN node scripts/copy-files.js
 
 # Image entrypoint / start command
 CMD npm start

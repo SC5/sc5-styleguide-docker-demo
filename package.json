@@ -13,7 +13,9 @@
   "dependencies": {
     "gulp": "^3.8.10",
     "gulp-sass": "^1.2.4",
-    "node-schedule": "^0.1.15"
+    "node-neat": "^1.4.2",
+    "node-schedule": "^0.1.15",
+    "sc5-styleguide": "*"
   },
   "apps": [
     {
@@ -37,7 +39,7 @@
     }
   ],
   "scripts": {
-    "server": "gulp watch",
+    "demo-server": "gulp watch",
     "start": "pm2 startOrRestart package.json && pm2 logs"
   }
 }
