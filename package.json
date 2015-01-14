@@ -15,7 +15,7 @@
     "gulp-sass": "^1.2.4",
     "node-neat": "^1.4.2",
     "node-schedule": "^0.1.15",
-    "sc5-styleguide": "*"
+    "sc5-styleguide": "0.3.0-rc2"
   },
   "apps": [
     {

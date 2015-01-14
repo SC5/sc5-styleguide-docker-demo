@@ -5,6 +5,10 @@ var path = require('path'),
   rootSrc = path.resolve('.', 'demo-input'),
   source = path.join(rootSrc, 'sass/**/*.scss'),
   outputPath = 'demo-output',
+  sassOpts = {
+    includePaths: require('node-neat').includePaths,
+    errLogToConsole: true
+  },
   watchTimerId;
 
 gulp.task('styleguide:generate', function() {
@@ -23,7 +27,7 @@ gulp.task('styleguide:generate', function() {
 
 gulp.task('styleguide:applystyles', ['styleguide:generate'], function() {
   return gulp.src(path.join(rootSrc, 'sass/app.scss'))
-    .pipe(sass({ includePaths: require('node-neat').includePaths }))
+    .pipe(sass(sassOpts))
     .pipe(styleguide.applyStyles())
     .pipe(gulp.dest(outputPath));
 });
