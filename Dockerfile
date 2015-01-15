@@ -8,7 +8,8 @@ ENV SG_PORT 3210
 EXPOSE 3210
 
 # Image build steps
-COPY scripts Gulpfile.js package.json $SG_APP_DIR
+COPY scripts $SG_APP_DIR/scripts
+COPY Gulpfile.js package.json $SG_APP_DIR/
 WORKDIR $SG_APP_DIR
 RUN mkdir logs
 RUN npm install -g pm2
