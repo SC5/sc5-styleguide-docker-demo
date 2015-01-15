@@ -1,5 +1,6 @@
 .git
 .gitignore
+demo-input
 demo-output
 logs
 node_modules
