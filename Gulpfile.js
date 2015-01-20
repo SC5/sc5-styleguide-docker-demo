@@ -17,10 +17,14 @@ gulp.task('styleguide:generate', function() {
     .pipe(styleguide.generate({
       title: pkg.name + ' ' + pkg.version + ' demo',
       server: true,
-      port: process.env.SG_PORT,
+      port: process.env.SG_PORT || 3000,
       rootPath: outputPath,
       overviewPath: path.join(rootSrc, 'README.md'),
-      styleVariables: path.join(rootSrc, 'sass/_styleguide_variables.scss')
+      styleVariables: path.join(rootSrc, 'sass/_styleguide_variables.scss'),
+      extraHead: [
+        '<link rel="stylesheet" type="text/css" href="/popup/popup.css">',
+        '<script src="/popup/popup.js"></script>'
+      ]
     }))
     .pipe(gulp.dest(outputPath));
 });
@@ -32,13 +36,17 @@ gulp.task('styleguide:applystyles', function() {
     .pipe(gulp.dest(outputPath));
 });
 
-gulp.task('styleguide:static', function() {
-  gulp.src(path.join(rootSrc, 'demo/**/*'))
+gulp.task('styleguide:static', ['copy:popup'], function() {
+  return gulp.src(path.join(rootSrc, 'demo/**/*'))
     .pipe(gulp.dest(path.join(outputPath, 'demo')));
 });
 
+gulp.task('copy:popup', function() {
+  return gulp.src('popup/**/*').pipe(gulp.dest(path.join(outputPath, 'popup')));
+});
+
 gulp.task('watch', ['styleguide'], function() {
-  gulp.watch(source, throttleStyleguideBuild);
+  return gulp.watch(source, throttleStyleguideBuild);
 });
 
 gulp.task('styleguide', ['styleguide:static', 'styleguide:applystyles', 'styleguide:generate']);

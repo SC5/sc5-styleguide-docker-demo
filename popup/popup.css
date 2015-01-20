@@ -1,0 +1,31 @@
+.sg.reset-notification.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  margin: 0;
+  z-index: 999999;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(123,123,123,0.5);
+}
+
+.sg.reset-notification .popup {
+  position: absolute;
+  top: 20%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+
+  width: 50%;
+  border-radius: 1.5em;
+  border: 0.3em solid #1695A3;
+  padding: 1em;
+
+  background-color: #EB7F00;
+  text-align: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.5em;
+  color: #1c3849;
+}
