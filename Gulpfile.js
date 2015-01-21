@@ -14,7 +14,7 @@ gulp.task('styleguide:generate', function() {
     .pipe(styleguide.generate({
       title: pkg.name + ' ' + pkg.version + ' demo',
       server: true,
-      port: process.env.SG_PORT || 3000,
+      port: process.env.SG_PORT || 3210,
       rootPath: outputPath,
       overviewPath: path.join(rootSrc, 'README.md'),
       styleVariables: path.join(rootSrc, 'sass/_styleguide_variables.scss'),
