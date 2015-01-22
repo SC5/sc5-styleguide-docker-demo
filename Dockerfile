@@ -4,8 +4,8 @@ FROM sc5io/ubuntu:latest
 # Environment variables
 ENV NODE_ENV production
 ENV SG_APP_DIR /sc5-styleguide-demo
-ENV SG_PORT 3210
-EXPOSE 3210
+ENV SG_PORT 3000
+EXPOSE 3000
 
 # Image build steps
 COPY scripts $SG_APP_DIR/scripts
