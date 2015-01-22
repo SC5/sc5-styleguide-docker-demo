@@ -6,6 +6,7 @@
     "type": "git",
     "url": "https://github.com/SC5/sc5-styleguide-docker-demo.git"
   },
+  "private": true,
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/SC5/sc5-styleguide-docker-demo/issues"
