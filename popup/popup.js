@@ -4,7 +4,7 @@
 
   var msg = 'This is a live demo environment, so please keep in mind that any changes made '
     + 'to the style variables are visible to other users as well.',
-    reset = '<b>All changes are reset every 30 minutes: on the hour and half past the hour.</b>',
+    reset = '<b>All changes are reset every 30 minutes: at the top of the hour and half past the hour.</b>',
     okBtn, modal;
 
   if (window.addEventListener) {

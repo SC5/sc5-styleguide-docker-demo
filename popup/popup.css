@@ -18,14 +18,15 @@
   margin-right: auto;
   z-index: 1;
 
-  width: 50%;
-  border-radius: 1.5em;
-  border: 0.3em solid #1695A3;
+  width: 75%;
+  max-width: 700px;
+  border: 0.3em solid #1C3849;
   padding: 1em;
 
-  background-color: #EB7F00;
+  background-color: #FFF;
   text-align: center;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1.5em;
+  font-size: 1.2em;
   color: #1c3849;
+  box-shadow: 2px 2px 3px #666;
 }
