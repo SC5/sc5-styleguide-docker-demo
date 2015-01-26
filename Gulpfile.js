@@ -19,8 +19,9 @@ gulp.task('styleguide:generate', function() {
       overviewPath: path.join(rootSrc, 'README.md'),
       styleVariables: path.join(rootSrc, 'sass/_styleguide_variables.scss'),
       extraHead: [
-        '<link rel="stylesheet" type="text/css" href="/popup/popup.css">',
-        '<script src="/popup/popup.js"></script>'
+        '<script src="/head-include/ga.js"></script>',
+        '<link rel="stylesheet" type="text/css" href="/head-include/popup/popup.css">',
+        '<script src="/head-include/popup/popup.js"></script>'
       ]
     }))
     .pipe(gulp.dest(outputPath));
@@ -33,13 +34,13 @@ gulp.task('styleguide:applystyles', function() {
     .pipe(gulp.dest(outputPath));
 });
 
-gulp.task('styleguide:static', ['copy:popup'], function() {
+gulp.task('styleguide:static', ['copy:head-include'], function() {
   return gulp.src(path.join(rootSrc, 'demo/**/*'))
     .pipe(gulp.dest(path.join(outputPath, 'demo')));
 });
 
-gulp.task('copy:popup', function() {
-  return gulp.src('popup/**/*').pipe(gulp.dest(path.join(outputPath, 'popup')));
+gulp.task('copy:head-include', function() {
+  return gulp.src('head-include/**/*').pipe(gulp.dest(path.join(outputPath, 'head-include')));
 });
 
 gulp.task('watch', ['styleguide'], function() {
