@@ -9,7 +9,7 @@ EXPOSE 3000
 
 # Image build steps
 COPY scripts $SG_APP_DIR/scripts
-COPY popup $SG_APP_DIR/popup
+COPY head-include $SG_APP_DIR/head-include
 COPY Gulpfile.js package.json $SG_APP_DIR/
 WORKDIR $SG_APP_DIR
 RUN mkdir logs
